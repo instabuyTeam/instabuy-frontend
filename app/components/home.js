@@ -4,12 +4,16 @@ import React, {
       ListView,
   View,
       StyleSheet,
-  Text
+  Text,
+      TouchableHighlight
 } from 'react-native';
 var mockPosts = [
     {caption: "This is my picture. Isdfhbdfas jhjf hdsfjh ajd hdsfajh. sdfa hgfdsjhdfs jhsdjhdf jhadsfjh.", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, }];
 
 class Home extends Component {
+    nothing(){
+        
+    }
  constructor(props) {
     super(props);
     this.state = {
@@ -47,6 +51,23 @@ class Home extends Component {
         </View>
         <ListView style={homeStyles.list} dataSource={this.state.dataSource} renderRow={this.renderPost}>
         </ListView>
+        <View style={homeStyles.tabBar}>
+            <TouchableHighlight onPress={this.nothing}>
+                <Text style={homeStyles.tab}>1</Text>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this.nothing}>
+                <Text style={homeStyles.tab}>2</Text>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this.nothing}>
+                <Text style={homeStyles.tab}>3</Text>
+            </TouchableHighlight
+            ><TouchableHighlight onPress={this.nothing}>
+                <Text style={homeStyles.tab}>4</Text>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={this.nothing}>
+                <Text style={homeStyles.tab}>5</Text>
+            </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -57,7 +78,9 @@ const homeStyles = StyleSheet.create({
       flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',  
+    backgroundColor: '#F5FCFF', 
+    flexDirection: 'column',
+
     },
     footer: {
       borderStyle: 'solid'  ,
@@ -70,7 +93,8 @@ const homeStyles = StyleSheet.create({
     },
     list: {
         flex: 1,
-       
+               flexDirection: 'column',
+
     },
     caption:{
          flex:1
@@ -79,7 +103,16 @@ const homeStyles = StyleSheet.create({
   image: {
       width:200,
       height:200,
-  }
+  },
+    tabBar: {
+        height: 50,
+        flexDirection: 'row',
+        backgroundColor: "#666666",
+    },
+    tab:{
+        flex:10000000,
+        margin:20
+    }
 });
 
 export default Home;
