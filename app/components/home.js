@@ -8,12 +8,13 @@ class Home extends Component {
 
   componentDidMount() {
     var _this = this;
-    setTimeout(function(){
+    //setTimeout(function(){
       _this.props.navigator.push({
         id: 'instagram',
         name: 'instagram'
       });
-    }, 1000);
+      console.log('Done loading');
+    //}, 500);
   }
 
   render() {
