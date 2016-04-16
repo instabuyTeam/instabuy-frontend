@@ -8,27 +8,37 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
+
+import Home from './app/components/home.js';
+import Instagram from './app/components/instagram.js';
 
 class instabuy extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Navigator initialRoute={{id: 'Home', name: 'Home'}} renderScene={this.renderScene}
+        configureScene={(route) => {
+          if (route.sceneConfig) {
+            return route.sceneConfig;
+          }
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+        />
     );
   }
+
+  renderScene (route, navigator) {
+    switch (route.id) {
+      case 'Home':
+        return (<Home navigator={navigator} />);
+      case 'instagram':
+        return (<Instagram navigator={navigator}/>);
+    }
+  }
 }
+
 
 const styles = StyleSheet.create({
   container: {
