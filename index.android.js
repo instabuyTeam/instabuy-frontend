@@ -14,6 +14,7 @@ import React, {
 
 import Home from './app/components/home.js';
 import Instagram from './app/components/instagram.js';
+import ImageView from './app/components/imageview.js';
 
 class instabuy extends Component {
   render() {
