@@ -49,24 +49,27 @@ class Home extends Component {
         <View style={homeStyles.header}>
             <Text>Instabuy</Text>
         </View>
-        <ListView style={homeStyles.list} dataSource={this.state.dataSource} renderRow={this.renderPost}>
+        <View style={homeStyles.listV}>
+        <ListView contentContainerStyle={homeStyles.list} dataSource={this.state.dataSource} renderRow={this.renderPost}>
         </ListView>
+        </View>
+        
         <View style={homeStyles.tabBar}>
-            <TouchableHighlight onPress={this.nothing}>
-                <Text style={homeStyles.tab}>1</Text>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this.nothing}>
-                <Text style={homeStyles.tab}>2</Text>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this.nothing}>
-                <Text style={homeStyles.tab}>3</Text>
-            </TouchableHighlight
-            ><TouchableHighlight onPress={this.nothing}>
-                <Text style={homeStyles.tab}>4</Text>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={this.nothing}>
-                <Text style={homeStyles.tab}>5</Text>
-            </TouchableHighlight>
+                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
+                    <Text >1</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
+                    <Text >2</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
+                    <Text >3</Text>
+                </TouchableHighlight
+                ><TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
+                    <Text >4</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
+                    <Text >5</Text>
+                </TouchableHighlight>
         </View>
       </View>
     )
@@ -77,7 +80,6 @@ const homeStyles = StyleSheet.create({
     outer: {
       flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF', 
     flexDirection: 'column',
 
@@ -91,9 +93,13 @@ const homeStyles = StyleSheet.create({
         width: 200,
         marginBottom: 20
     },
-    list: {
+    listV: {
         flex: 1,
                flexDirection: 'column',
+        justifyContent: 'center'
+    },
+    list:{
+                alignItems: 'center'
 
     },
     caption:{
@@ -109,9 +115,9 @@ const homeStyles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: "#666666",
     },
-    tab:{
-        flex:10000000,
-        margin:20
+    tabs:{
+        flex:1,
+        
     }
 });
 
