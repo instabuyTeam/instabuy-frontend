@@ -10,13 +10,18 @@ import React, {
       ScrollView
 } from 'react-native';
 
+var Firebase = require('firebase');
+var ref = new Firebase('https://instabuysell.firebaseio.com/');
+
 class ImageView extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       item: {},
-      products: []
+      products: [],
+      seller: true,
+      card: ''
     }
   }
 
@@ -25,11 +30,23 @@ class ImageView extends Component {
     AsyncStorage.getItem("item").then((value) => {
       _this.setState({item:JSON.parse(value)})
     }).then(function() {
-      fetch('http://10.24.193.217:1337/' + 'cloudsight/testimg/')
+      fetch('http://10.24.193.217:1337/' + 'cloudsight/img', {
+        method: 'post',
+        body: JSON.stringify({
+          img_url: _this.state.item.images.standard_resolution.url
+        })
+      })
       .then(response => response)
       .then(res => res.json())
       .then(data => _this.setState({products: data}) )
+    }).then(function(){
+      ref.child('users').once('value', function(snap){
+        //if(snapshot.hasChild(_this.state.item.user.username)) {
+            //_this.setState({seller:true, card: snap.val()._this.state.item.user.username.card});
+        //}
+      })
     })
+
   }
 
     goHome(){
@@ -45,12 +62,26 @@ class ImageView extends Component {
              });
     }
 
+    buy() {
+      fetch('')
+      .then(response => response)
+      .then(res => res.json())
+      .then(data => _this.setState({products: data}) );
+    }
+
 render() {
   var url;
     if(this.state.item.hasOwnProperty('images')) {
       url = this.state.item.images.standard_resolution.url;
     } else {
       url = 'https://camo.githubusercontent.com/891e94cd8dda7f40f451bb27067be513c230318a/68747470733a2f2f7261772e6769746875622e636f6d2f766f6f646f6f74696b69676f642f6c6f676f2e6a732f6d61737465722f626f676a732f6a732e706e67'
+    }
+
+    var buy;
+    if(this.state.seller) {
+      buy = <View>
+        <TouchableHighlight onPress={this.buy}><Text style={{fontSize:15}}>Buy</Text></TouchableHighlight>
+      </View>
     }
 
     var posts;
@@ -87,6 +118,7 @@ render() {
                        <Text>{item.price}</Text>
                        <Text>Web store</Text>
                    </View>
+                   {buy}
                </View>
              )
            }
@@ -100,7 +132,7 @@ render() {
         <View style={imgStyles.header}>
             <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
         </View>
-
+        <Text>{this.state.products}</Text>
         <ScrollView>
           {products}
         </ScrollView>
