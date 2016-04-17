@@ -73,6 +73,12 @@ class Home extends Component {
                name: 'search'
              });
     }
+    goVisa(){
+        this.props.navigator.push({
+               id: 'visa',
+               name: 'visa'
+             });
+    }
     goPhoto(item){
       var _this = this;
       console.log(item);
@@ -137,6 +143,12 @@ class Home extends Component {
                     <View style={homeStyles.tab}>
                         <Image style={homeStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={homeStyles.tabText}>Search</Text>
+                    </View>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor="transparent"  style={homeStyles.tabs} onPress={e => {this.goVisa(e)}}>
+                    <View style={homeStyles.tab}>
+                        <Image style={homeStyles.icons} source={require('../images/gift_white.png')}/>
+                        <Text style={homeStyles.tabText}>Send gift</Text>
                     </View>
                 </TouchableHighlight>
         </View>

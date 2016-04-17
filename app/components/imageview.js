@@ -73,6 +73,12 @@ class ImageView extends Component {
       //.then(res => res)
       .then((data) => this.setState({link: data}) );
     }
+     goVisa(){
+        this.props.navigator.push({
+               id: 'visa',
+               name: 'visa'
+             });
+    }
 
 render() {
   var url;
@@ -154,11 +160,12 @@ render() {
           <View style={{flex:1}}>
                 <Text>Loading...</Text>
           </View>
-          <View style={imgStyles.tabBar}>
-                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
+                  <View style={imgStyles.tabBar}>
+
+          <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goVisa(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/home_2.png')}/>
-                        <Text style={imgStyles.tabText}>home</Text>
+                        <Text style={imgStyles.tabText}>Home</Text>
                     </View>
           </TouchableHighlight>
                 <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
@@ -167,7 +174,13 @@ render() {
                         <Text style={imgStyles.tabText}>Search</Text>
                     </View>
                 </TouchableHighlight>
-        </View>
+                <TouchableHighlight underlayColor="transparent"  style={[imgStyles.tabs, imgStyles.activeTab]} onPress={this.nothing}>
+                    <View style={imgStyles.tab}>
+                        <Image style={imgStyles.icons} source={require('../images/gift_white.png')}/>
+                        <Text style={imgStyles.tabText}>Send gift</Text>
+                    </View>
+                </TouchableHighlight>
+                        </View>
                         </View>
       );
     }
@@ -184,11 +197,12 @@ render() {
           {web}
         </ScrollView>
 
-        <View style={imgStyles.tabBar}>
-                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
+                  <View style={imgStyles.tabBar}>
+
+          <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goVisa(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/home_2.png')}/>
-                        <Text style={imgStyles.tabText}>home</Text>
+                        <Text style={imgStyles.tabText}>Home</Text>
                     </View>
           </TouchableHighlight>
                 <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
@@ -197,7 +211,13 @@ render() {
                         <Text style={imgStyles.tabText}>Search</Text>
                     </View>
                 </TouchableHighlight>
-        </View>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={this.nothing}>
+                    <View style={imgStyles.tab}>
+                        <Image style={imgStyles.icons} source={require('../images/gift_white.png')}/>
+                        <Text style={imgStyles.tabText}>Send gift</Text>
+                    </View>
+                </TouchableHighlight>
+                        </View>
       </View>
     )
   }

@@ -16,6 +16,7 @@ import Home from './app/components/home.js';
 import Instagram from './app/components/instagram.js';
 import Search from './app/components/search.js';
 import ImageView from './app/components/imageview.js';
+import Visapage from './app/components/visapage.js';
 
 class instabuy extends Component {
   render() {
@@ -41,6 +42,8 @@ class instabuy extends Component {
         return (<Search navigator={navigator}/>);
     case 'ImageView':
         return (<ImageView navigator={navigator}/>);
+    case 'visa':
+        return (<Visapage navigator={navigator}/>);
     }
   }
 }
