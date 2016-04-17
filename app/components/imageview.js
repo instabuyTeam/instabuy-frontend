@@ -100,34 +100,22 @@ render() {
                 <View style={imgStyles.outer}>
 
           <View style={imgStyles.header}>
-            <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
+            <TouchableHighlight underlayColor="transparent" onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
         </View>
           <View style={{flex:1}}>
                 <Text>Loading...</Text>
           </View>
           <View style={imgStyles.tabBar}>
-                <TouchableHighlight style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={imgStyles.tabText}>home</Text>
                     </View>
           </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={imgStyles.tabText}>Search</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={this.nothing}>
-                    <View style={imgStyles.tab}>
-                        <Image style={imgStyles.icons} source={require('../images/cart_2.png')}/>
-                        <Text style={imgStyles.tabText}>Cart</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={this.nothing}>
-                    <View  style={imgStyles.tab}>
-                        <Image style={imgStyles.icons} source={require('../images/cogwheel_2.png')}/>
-                        <Text style={imgStyles.tabText}>Settings</Text>
                     </View>
                 </TouchableHighlight>
         </View>
@@ -139,7 +127,7 @@ render() {
     return(
       <View style={imgStyles.outer}>
         <View style={imgStyles.header}>
-            <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20,color:'white',fontSize:20}}>Back</Text></TouchableHighlight>
+            <TouchableHighlight  underlayColor="transparent" onPress={this.props.navigator.pop}><Text style={{marginTop:20,color:'white',fontSize:20}}>Back</Text></TouchableHighlight>
         </View>
 
         <ScrollView>
@@ -147,28 +135,16 @@ render() {
         </ScrollView>
 
         <View style={imgStyles.tabBar}>
-                <TouchableHighlight style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={imgStyles.tabText}>home</Text>
                     </View>
           </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={imgStyles.tabText}>Search</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={this.nothing}>
-                    <View style={imgStyles.tab}>
-                        <Image style={imgStyles.icons} source={require('../images/cart_2.png')}/>
-                        <Text style={imgStyles.tabText}>Cart</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={this.nothing}>
-                    <View  style={imgStyles.tab}>
-                        <Image style={imgStyles.icons} source={require('../images/cogwheel_2.png')}/>
-                        <Text style={imgStyles.tabText}>Settings</Text>
                     </View>
                 </TouchableHighlight>
         </View>

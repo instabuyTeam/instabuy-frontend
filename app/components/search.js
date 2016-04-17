@@ -69,7 +69,7 @@ render() {
     var posts = this.state.posts.map(function(item, key){
       return(
         <View key={key}>
-            <TouchableHighlight style={{flex:1}} onPress={()=>_this.goPhoto(item)}>
+            <TouchableHighlight  underlayColor="transparent" style={{flex:1}} onPress={()=>_this.goPhoto(item)}>
                 <Image style={searchStyles.thumb} source={{uri: item.images.standard_resolution.url}}/>
             </TouchableHighlight>
         </View>
@@ -80,7 +80,7 @@ render() {
       <View  style={searchStyles.outer}>
         <View style={searchStyles.header}>
             <TextInput style={searchStyles.searchBox} ref='textInput' placeholder="Click here to search" onChangeText={(query) => this.setState({query})} onSubmitEditing={this.search.bind(this)} ></TextInput>
-            <TouchableHighlight onPress={this.search.bind(this)}><Image style={searchStyles.searchBtn}  source={require("../images/search_2.png")}/></TouchableHighlight>
+            <TouchableHighlight  underlayColor="transparent" onPress={this.search.bind(this)}><Image style={searchStyles.searchBtn}  source={require("../images/search_2.png")}/></TouchableHighlight>
         </View>
           <ScrollView  scrollEnabled={true} onScroll={this.hideKeyboard.bind(this)}>
                 <View style={searchStyles.listV}>
@@ -89,28 +89,16 @@ render() {
           </ScrollView>
 
         <View style={searchStyles.tabBar}>
-                <TouchableHighlight style={searchStyles.tabs} onPress={e => {this.goHome(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={searchStyles.tabs} onPress={e => {this.goHome(e)}}>
                     <View style={searchStyles.tab}>
                         <Image style={searchStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={searchStyles.tabText}>home</Text>
                     </View>
           </TouchableHighlight>
-                <TouchableHighlight style={[searchStyles.tabs, searchStyles.activeTab]} onPress={this.nothing}>
+                <TouchableHighlight underlayColor="transparent"  style={[searchStyles.tabs, searchStyles.activeTab]} onPress={this.nothing}>
                     <View style={searchStyles.tab}>
                         <Image style={searchStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={searchStyles.tabText}>Search</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={searchStyles.tabs} onPress={this.nothing}>
-                    <View style={searchStyles.tab}>
-                        <Image style={searchStyles.icons} source={require('../images/cart_2.png')}/>
-                        <Text style={searchStyles.tabText}>Cart</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={searchStyles.tabs} onPress={this.nothing}>
-                    <View  style={searchStyles.tab}>
-                        <Image style={searchStyles.icons} source={require('../images/cogwheel_2.png')}/>
-                        <Text style={searchStyles.tabText}>Settings</Text>
                     </View>
                 </TouchableHighlight>
         </View>

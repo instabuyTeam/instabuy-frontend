@@ -103,7 +103,7 @@ class Home extends Component {
              <Text style={homeStyles.caption}>{item.user.username}</Text>
          </View>
          <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
-             <TouchableHighlight style={homeStyles.buy} onPress={()=>_this.goPhoto(item)}>
+             <TouchableHighlight underlayColor="transparent"  style={homeStyles.buy} onPress={()=>_this.goPhoto(item)}>
                  <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
              </TouchableHighlight>
 
@@ -120,35 +120,23 @@ class Home extends Component {
     return(
       <View style={homeStyles.outer}>
         <View style={homeStyles.header}>
-            <Image style={homeStyles.headerImage} source={require('../images/typemark_cropped.png')}/>
+            <Image style={homeStyles.headerImage} source={require('../images/INSTABUY-FONT-LOGO.png')}/>
         </View>
           <ScrollView scrollEnabled={true} >
             {posts}
           </ScrollView>
 
         <View style={homeStyles.tabBar}>
-                <TouchableHighlight style={[homeStyles.tabs, homeStyles.activeTab]} onPress={this.nothing}>
+                <TouchableHighlight underlayColor="transparent"  style={[homeStyles.tabs, homeStyles.activeTab]} onPress={this.nothing}>
                     <View style={homeStyles.tab}>
                         <Image style={homeStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={homeStyles.tabText}>Home</Text>
                     </View>
           </TouchableHighlight>
-                <TouchableHighlight style={homeStyles.tabs} onPress={e => {this.goSearch(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={homeStyles.tabs} onPress={e => {this.goSearch(e)}}>
                     <View style={homeStyles.tab}>
                         <Image style={homeStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={homeStyles.tabText}>Search</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <View style={homeStyles.tab}>
-                        <Image style={homeStyles.icons} source={require('../images/cart_2.png')}/>
-                        <Text style={homeStyles.tabText}>Cart</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <View  style={homeStyles.tab}>
-                        <Image style={homeStyles.icons} source={require('../images/cogwheel_2.png')}/>
-                        <Text style={homeStyles.tabText}>Settings</Text>
                     </View>
                 </TouchableHighlight>
         </View>
