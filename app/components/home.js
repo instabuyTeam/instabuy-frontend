@@ -83,23 +83,27 @@ class Home extends Component {
             </View>
         );
     };
-//    var posts = this.state.posts.map(function(item, key){
-//      console.log(item);
-//      return(
-//        <View key={key}>
-//            <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
-//                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-//                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
-//                </TouchableHighlight>
-//
-//            </Image>
-//            <View style={homeStyles.footer}>
-//                <Text style={homeStyles.caption}>{item.caption}</Text>
-//                <Text>{item.likes.count}</Text>
-//            </View>
-//        </View>
-//      )
-//    })
+    var _this = this;
+    var posts = this.state.posts.map(function(item, key){
+      console.log(item);
+      return(
+        <View key={key} style={homeStyles.list}>
+            <View style={homeStyles.user}>
+                <Image source={{uri: item.user.profile_picture}} style={homeStyles.face}/>
+                <Text style={homeStyles.caption}>{item.user.username}</Text>
+            </View>
+            <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
+                <TouchableHighlight style={homeStyles.buy} onPress={_this.nothing}>
+                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
+                </TouchableHighlight>
+
+            </Image>
+            <View style={homeStyles.footer}>
+                <Text style={homeStyles.caption}>{item.caption}</Text>
+            </View>
+        </View>
+      )
+    })
 
 
     return(
@@ -108,97 +112,7 @@ class Home extends Component {
             <Text style={homeStyles.headerText}>Instabuy</Text>
         </View>
           <ScrollView scrollEnabled={true} >
-            <View style={homeStyles.list}>
-       <View style={homeStyles.user}>
-                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>Mark Fajet</Text>
-            </View>
-            <Image source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", }} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>sdfhjgasjhfgdshjfgsahjfgdsjhfg</Text>
-                <Text>14</Text>
-            </View>
-        </View><View style={homeStyles.list}>
-       <View style={homeStyles.user}>
-                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>Mark Fajet</Text>
-            </View>
-            <Image source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", }} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>sdfhjgasjhfgdshjfgsahjfgdsjhfg</Text>
-                <Text>14</Text>
-            </View>
-        </View><View style={homeStyles.list}>
-       <View style={homeStyles.user}>
-                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>Mark Fajet</Text>
-            </View>
-            <Image source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", }} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>sdfhjgasjhfgdshjfgsahjfgdsjhfg</Text>
-                <Text>14</Text>
-            </View>
-        </View><View style={homeStyles.list}>
-       <View style={homeStyles.user}>
-                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>Mark Fajet</Text>
-            </View>
-            <Image source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", }} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>sdfhjgasjhfgdshjfgsahjfgdsjhfg</Text>
-                <Text>14</Text>
-            </View>
-        </View><View style={homeStyles.list}>
-       <View style={homeStyles.user}>
-                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>Mark Fajet</Text>
-            </View>
-            <Image source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", }} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>sdfhjgasjhfgdshjfgsahjfgdsjhfg</Text>
-                <Text>14</Text>
-            </View>
-        </View><View style={homeStyles.list}>
-       <View style={homeStyles.user}>
-                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>Mark Fajet</Text>
-            </View>
-            <Image source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", }} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>sdfhjgasjhfgdshjfgsahjfgdsjhfg</Text>
-                <Text>14</Text>
-            </View>
-        </View>
+            {posts}
           </ScrollView>
 
         <View style={homeStyles.tabBar}>
