@@ -53,19 +53,36 @@ render() {
         <View style={imgStyles.header}>
             <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
         </View>
-        <View style={{flex:1}}>
-            <View style={imgStyles.user}>
-                <Image source={require('../images/face.jpg')} style={imgStyles.face}/>
-                <Text style={imgStyles.caption}>Mark</Text>
+        <ScrollView>
+            <View style={{flexDirection:'row',flex:1}}>
+                <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
+                <View style= {{flexDirection: 'column'}}>
+                    <Text>Brand</Text>
+                    <Text>Description</Text>
+                    <Text>Price</Text>
+                    <Text>Web store</Text>
+                </View>
             </View>
-            <Image source={{uri:url}} style={imgStyles.image}/>
-            <View style={imgStyles.footer}>
-                <Text style={imgStyles.caption}>sdfdsfhjgsdfhjgdfshjg</Text>
+
+            <View style={{flexDirection:'row',flex:1}}>
+                <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
+                <View style= {{flexDirection: 'column'}}>
+                    <Text>Brand</Text>
+                    <Text>Description</Text>
+                    <Text>Price</Text>
+                    <Text>Web store</Text>
+                </View>
             </View>
-        </View>
-        <View style={{flex:.6}}>
-            <Text style={{flex:.6}}>Option 1</Text>
-        </View>
+            <View style={{flexDirection:'row',flex:1}}>
+                <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
+                <View style= {{flexDirection: 'column'}}>
+                    <Text>Brand</Text>
+                    <Text>Description</Text>
+                    <Text>Price</Text>
+                    <Text>Web store</Text>
+                </View>
+            </View>
+        </ScrollView>
 
         <View style={imgStyles.tabBar}>
                 <TouchableHighlight style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>

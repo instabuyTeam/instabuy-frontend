@@ -5,6 +5,7 @@ import React, {
   Text,
       StyleSheet,
   TouchableHighlight,
+      TouchableWithoutFeedback,
   TextInput,
   AsyncStorage,
   View,
@@ -50,22 +51,27 @@ render() {
     var _this = this;
     var posts = this.state.posts.map(function(item, key){
       return(
-        <View key={key} style={searchStyles.listV}>
-              <TouchableHighlight onPress={_this.search.bind(_this)}>
+        <View key={key}>
+            <TouchableHighlight style={{flex:1}} onPress={this.nothing}>
                 <Image style={searchStyles.thumb} source={{uri: item.images.standard_resolution.url}}/>
-                </TouchableHighlight>
-          </View>
+            </TouchableHighlight>
+        </View>
       )
     })
+var dismissKeyboard = require('dismissKeyboard');
 
     return(
       <View style={searchStyles.outer}>
         <View style={searchStyles.header}>
+        <TouchableWithoutFeedback onPress={()=> dismissKeyboard()}>
             <TextInput style={searchStyles.searchBox}  placeholder="Click here to search" onChangeText={(query) => this.setState({query})} ></TextInput>
+        </TouchableWithoutFeedback>
             <TouchableHighlight onPress={this.search.bind(this)}><Image style={searchStyles.searchBtn}  source={require("../images/search_2.png")}/></TouchableHighlight>
         </View>
           <ScrollView scrollEnabled={true} >
-              {posts}
+                <View style={searchStyles.listV}>
+                    {posts}
+                </View>
           </ScrollView>
 
         <View style={searchStyles.tabBar}>
@@ -120,7 +126,8 @@ const searchStyles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+                justifyContent: 'center'
+
     },
     list:{
         marginBottom:20

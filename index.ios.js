@@ -20,7 +20,7 @@ import ImageView from './app/components/imageview.js';
 class instabuy extends Component {
   render() {
     return (
-      <Navigator initialRoute={{id: 'ImageView', name: 'ImageView'}} renderScene={this.renderScene}
+      <Navigator initialRoute={{id: 'instagram', name: 'instagram'}} renderScene={this.renderScene}
         configureScene={(route) => {
           if (route.sceneConfig) {
             return route.sceneConfig;
