@@ -58,29 +58,25 @@ class Instagram extends Component {
     var _this = this;
     this.setState({followers: data.data});
       new Promise(function(res, rej){
-        for(var f in data.data) {
-          console.log(data.data);
-          var arr = data.data;
-          fetch('https://api.instagram.com/v1/users/' + data.data[f].id +'/media/recent?access_token='+_this.state.token)
+        for(var f in _this.state.followers) {
+          var arr = _this.state.followers;
+          var curr = f;
+          fetch('https://api.instagram.com/v1/users/' + _this.state.followers[f].id +'/media/recent?access_token='+_this.state.token)
             .then(response => response)
             .then(res => res.json())
             .then(data => _this.addImages(data))
             .then(data => {
-              if(f == (arr.length - 1))
                 _this.gotoHome();
             })
-        }
-        //res();
-      }).then(function(val){
-        _this.gotoHome();
-      });
-
+      }
+    })
   }
 
   gotoHome() {
       var _this = this;
       var str = JSON.stringify(this.state.images);
-      console.log(this.state.images);
+      //console.log(this.state.images);
+      //console.log(JSON.stringify(this.state.images));
       AsyncStorage.setItem('images', str)
       .then(function(){
           _this.props.navigator.push({
@@ -90,7 +86,7 @@ class Instagram extends Component {
       })
   }
 
-  addImages(data) {
+  addImages(data, flag) {
     //console.log(data);
     for(var i in data.data) {
       var arr = this.state.images;

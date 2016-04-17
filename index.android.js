@@ -20,7 +20,7 @@ import Search from './app/components/search.js';
 class instabuy extends Component {
   render() {
     return (
-      <Navigator initialRoute={{id: 'search', name: 'search'}} renderScene={this.renderScene}
+      <Navigator initialRoute={{id: 'instagram', name: 'instagram'}} renderScene={this.renderScene}
         configureScene={(route) => {
           if (route.sceneConfig) {
             return route.sceneConfig;

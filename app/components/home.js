@@ -63,47 +63,41 @@ class Home extends Component {
       })*/
     }
 
-    nothing(){
-        console.log("nothing");
+    goToItem(item){
+        console.log(item);
+        console.log('run');
     }
 
   render() {
-      var renderPost = (mockPost) => {
-        return(
-            <View>
-                <Image source={{uri: mockPost.images.standard_resolution.url}} style={homeStyles.image}>
-                    <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                        <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
-                    </TouchableHighlight>
-                </Image>
-                <View style={homeStyles.footer}>
-                    <Text style={homeStyles.caption}>mockPost.caption</Text>
-                    <Text>mockPost.numLikes</Text>
-                </View>
-            </View>
-        );
-    };
-//    var _this = this;
-//    var posts = this.state.posts.map(function(item, key){
-//      console.log(item);
-//      return(
-//        <View key={key} style={homeStyles.list}>
-//            <View style={homeStyles.user}>
-//                <Image source={{uri: item.user.profile_picture}} style={homeStyles.face}/>
-//                <Text style={homeStyles.caption}>{item.user.username}</Text>
-//            </View>
-//            <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
-//                <TouchableHighlight style={homeStyles.buy} onPress={_this.nothing}>
-//                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
-//                </TouchableHighlight>
-//
-//            </Image>
-//            <View style={homeStyles.footer}>
-//                <Text style={homeStyles.caption}>{item.caption}</Text>
-//            </View>
-//        </View>
-//      )
-//    })
+
+   var _this = this;
+   var posts = this.state.posts.map(function(item, key){
+     console.log(item);
+     var caption;
+     if(item.caption){
+       caption = item.caption;
+     } else {
+       caption = 'no caption'
+     }
+
+     return(
+       <View key={key} style={homeStyles.list}>
+         <View style={homeStyles.user}>
+             <Image source={{uri: item.user.profile_picture}} style={homeStyles.face}/>
+             <Text style={homeStyles.caption}>{item.user.username}</Text>
+         </View>
+         <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
+             <TouchableHighlight style={homeStyles.buy} onPress={_this.goToItem.bind(item)}>
+                 <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
+             </TouchableHighlight>
+
+         </Image>
+         <View style={homeStyles.footer}>
+             
+         </View>
+       </View>
+     )
+   })
 
 
     return(
@@ -112,21 +106,7 @@ class Home extends Component {
             <Image style={homeStyles.headerImage} source={require('../images/typemark_cropped.png')}/>
         </View>
           <ScrollView scrollEnabled={true} >
-            <View  style={homeStyles.list}>
-            <View style={homeStyles.user}>
-                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>Mark</Text>
-            </View>
-            <Image source={{uri:"https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>sdfdsfhjgsdfhjgdfshjg</Text>
-            </View>
-        </View>
+            {posts}
           </ScrollView>
 
         <View style={homeStyles.tabBar}>
@@ -232,7 +212,7 @@ const homeStyles = StyleSheet.create({
     tab: {
         alignItems:'center',
         paddingTop:3,
-        
+
     },
     tabText: {
         color:'#ffffff'
