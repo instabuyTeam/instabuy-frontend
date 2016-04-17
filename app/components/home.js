@@ -11,9 +11,7 @@ var mockPosts = [
     {caption: "This is my picture. Isdfhbdfas jhjf hdsfjh ajd hdsfajh. sdfa hgfdsjhdfs jhsdjhdf jhadsfjh.", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, }];
 
 class Home extends Component {
-    nothing(){
-        
-    }
+    
  constructor(props) {
     super(props);
     this.state = {
@@ -22,8 +20,6 @@ class Home extends Component {
       }),
       loaded: false,
     };
-     
-
   }
     componentDidMount(){
         this.setState({
@@ -31,26 +27,37 @@ class Home extends Component {
           loaded: true,
         });
     }
-    renderPost(mockPost){
+    
+    nothing(){
+        console.log("nothing");
+    }
+
+  render() {
+      
+      var renderPost = (mockPost) => {
         return(
             <View>  
-                <Image source={{uri: mockPost.photoURL}} style={homeStyles.image} />
+                <Image source={{uri: mockPost.photoURL}} style={homeStyles.image}> 
+                    <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
+                        <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
+                    </TouchableHighlight>
+
+                </Image>
                 <View style={homeStyles.footer}>
                     <Text style={homeStyles.caption}>{mockPost.caption}</Text>
                     <Text>{mockPost.numLikes}</Text>
                 </View>
             </View>
         );
-    }
-
-  render() {
+    };
+      
     return(
       <View style={homeStyles.outer}>
         <View style={homeStyles.header}>
-            <Text>Instabuy</Text>
+            <Text style={homeStyles.headerText}>Instabuy</Text>
         </View>
         <View style={homeStyles.listV}>
-        <ListView contentContainerStyle={homeStyles.list} dataSource={this.state.dataSource} renderRow={this.renderPost}>
+        <ListView contentContainerStyle={homeStyles.list} dataSource={this.state.dataSource} renderRow={renderPost}>
         </ListView>
         </View>
         
@@ -59,13 +66,19 @@ class Home extends Component {
                     <Text >1</Text>
                 </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <Text >2</Text>
+                    <View>
+                        <Image style={homeStyles.icons} source={require('../images/search_white.png')}/>
+                        <Text>Search</Text>
+                    </View>
                 </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
                     <Text >3</Text>
                 </TouchableHighlight
                 ><TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <Text >4</Text>
+                    <View>
+                        <Image style={homeStyles.icons} source={require('../images/cart_white.png')}/>
+                        <Text>Cart</Text>
+                    </View>
                 </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
                     <Text >5</Text>
@@ -87,7 +100,7 @@ const homeStyles = StyleSheet.create({
     footer: {
       borderStyle: 'solid'  ,
         borderColor: '#666666',
-        borderWidth:2,
+        borderWidth:1.5,
         borderTopWidth:0,
         flexDirection: 'row',
         width: 200,
@@ -114,10 +127,30 @@ const homeStyles = StyleSheet.create({
         height: 50,
         flexDirection: 'row',
         backgroundColor: "#666666",
+    },header: {
+        height: 50,
+        flexDirection: 'row',
+        backgroundColor: "#666666",
+        justifyContent: 'center'
+
+    },
+    headerText:{
+        bottom: 0
     },
     tabs:{
         flex:1,
+        alignItems: 'center',
+        borderRightWidth:0.5,
+        borderLeftWidth:0.5,
         
+    },
+    icons: {
+        width: 30,
+        height: 30
+    },
+    buy: {
+        width: 50,
+        height: 50,
     }
 });
 
