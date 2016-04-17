@@ -10,7 +10,6 @@ import React, {
 var accessTokenURL = 'https://api.instagram.com/oauth/authorize/';
 var instagramURL = 'https://www.instagram.com/oauth/authorize/?client_id=378839e8b61f4c8ba6489c4cb8466b03&redirect_uri=https://github.com/instabuyTeam&response_type=token&scope=public_content+follower_list'
 
-
 class Instagram extends Component {
 
   constructor(props) {
@@ -73,9 +72,13 @@ class Instagram extends Component {
         });
   }*/
 
-  componentDidMount() {
-
-  }
+  //componentDidMount() {
+    //console.log('mount');
+    /*fetch('http://10.24.193.217:1337/' + 'cloudsight/test')
+    .then(response => response)
+    .then(res => res.json())
+    .then(data => console.log(data) );*/
+  //}
 
   lookUpImage() {
     fetch(accessTokenURL, {
@@ -91,48 +94,65 @@ class Instagram extends Component {
       })
 
     }).then(function (response) {
-      console.log(response);
-      console.log(response.json());
+      //console.log(response);
+      //console.log(response.json());
           response.json().then(function(data){
-              console.log(data);
+              //console.log(data);
           });
         });
   }
 
   setImageList(data) {
     var _this = this;
-    console.log(data);
-    console.log(data.data);
+    //console.log(data);
+    //console.log(data.data);
     this.setState({followers: data.data});
     for(var f in data.data) {
       fetch('https://api.instagram.com/v1/users/' + data.data[f].id +'/media/recent?access_token='+this.state.token)
         .then(response => response)
         .then(res => res.json())
-        .then(data => _this.addImages(data));
+        .then(data => _this.addImages(data))
+        .then(_this.gotoHome());
     }
   }
 
+  gotoHome() {
+    var _this = this;
+    var str = JSON.stringify(this.state.images);
+    AsyncStorage.setItem('images', str)
+    .then(function(){
+        _this.props.navigator.push({
+          id: 'Home',
+          name: 'Home'
+        });
+    })
+
+  }
+
+  componentWillUnmount() {
+    console.log('new page');
+  }
+
   addImages(data) {
-    console.log(data);
+    //console.log(data);
     for(var i in data.data) {
       var arr = this.state.images;
       arr.push(data.data[i])
-      console.log(arr);
+      //console.log(arr);
       this.setState({images: arr});
-      console.log(this.state.images);
+      //console.log(this.state.images);
     }
   }
 
   webUpdate(navState) {
     var _this = this;
-    console.log(navState.url);
     this.setState({url: navState.url});
     this.setState({token: navState.url.substring(navState.url.indexOf('=')+1, navState.url.length)});
     AsyncStorage.setItem('access_token', navState.url.substring(navState.url.indexOf('=')+1, navState.url.length));
     fetch('https://api.instagram.com/v1/users/self/follows?access_token='+this.state.token)
       .then(response => response)
       .then(res => res.json())
-      .then(data => _this.setImageList(data));
+      .then(data => _this.setImageList(data))
 
     /*AsyncStorage.getItem("access_token", function(token) {
       fetch('https://api.instagram.com/v1/users/self/follows?access_token='+token).then(function(response){
