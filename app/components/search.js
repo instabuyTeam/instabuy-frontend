@@ -21,10 +21,64 @@ render() {
     return(
       <View style={searchStyles.outer}>
         <View style={searchStyles.header}>
-            <Image style={searchStyles.headerImage} source={require('../images/typemark_cropped.png')}/>
+
         </View>
           <ScrollView scrollEnabled={true} >
-            
+              <View style={searchStyles.listV}>
+            <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          <Image style={searchStyles.thumb} source={{uri: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}}/>
+          </View>
           </ScrollView>
 
         <View style={searchStyles.tabBar}>
@@ -77,9 +131,9 @@ const searchStyles = StyleSheet.create({
     },
     listV: {
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'center',
-        alignItems:'stretch'
     },
     list:{
         marginBottom:20
@@ -144,6 +198,11 @@ const searchStyles = StyleSheet.create({
         marginTop:18  ,
         height:30,
         width:130,
+    },
+    thumb: {
+        height:100,
+        width:100,
+        margin:0.5
     }
 });
 
