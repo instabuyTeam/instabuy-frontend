@@ -21,8 +21,9 @@ class ImageView extends Component {
       item: {},
       products: [],
       seller: true,
-      card: ''
-      loaded:false
+      card: '',
+      loaded:false,
+      link:''
     };
   }
 
@@ -63,11 +64,11 @@ class ImageView extends Component {
              });
     }
 
-    buy() {
-      fetch('')
+    buy(asin) {
+      fetch('http://10.24.193.217:1337/' + 'cloudsight/cart/'+asin)
       .then(response => response)
-      .then(res => res.json())
-      .then(data => _this.setState({products: data}) );
+      .then(res => this.setState({link: res}))
+      //.then(data => this.setState({link: data}) );
     }
 
 render() {
@@ -101,8 +102,24 @@ render() {
         )
       })
     }*/
-    var products;
+    var web;
+    if(this.state.link.length > 0) {
+      web =  <WebView
+         onNavigationStateChange = {this.webUpdate.bind(this)}
+         style={{
+           backgroundColor: 'white',
+           height: 300,
+         }}
+         source={{
+           uri: this.state.link,
+           method: 'POST'
 
+         }}
+         scalesPageToFit={false}
+       />
+   }
+    var products;
+    var _this =this;
     if(this.state.products.length > 0 && this.state.products[1].imgUrl) {
         products = this.state.products.map(function(item, key){
           var u = 'https://avatars3.githubusercontent.com/u/1857166?v=3&s=96';
@@ -119,8 +136,8 @@ render() {
                        <Text style={imgStyles.resultText}>Description: {item.description}</Text>
                        <Text style={[imgStyles.resultText, {fontWeight:'bold'}]} >Price: {item.normalPrice}</Text>
                        <Text style={imgStyles.resultText}>Seller: {item.webStore}</Text>
+                       <TouchableHighlight onPress={() => _this.buy(item.asin)}><Text style={{fontSize:15}}>Buy</Text></TouchableHighlight>
                    </View>
-                   {buy}
                </View>
              )
            }
@@ -160,9 +177,10 @@ render() {
         <View style={imgStyles.header}>
             <TouchableHighlight  underlayColor="transparent" onPress={this.props.navigator.pop}><Text style={{marginTop:20,color:'white',fontSize:20}}>Back</Text></TouchableHighlight>
         </View>
-        <Text>{this.state.products}</Text>
+
         <ScrollView>
           {products}
+          {web}
         </ScrollView>
 
         <View style={imgStyles.tabBar}>
