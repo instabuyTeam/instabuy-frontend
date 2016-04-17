@@ -145,11 +145,11 @@ const searchStyles = StyleSheet.create({
     tabBar: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#7d1a0c",
     },header: {
         height: 70,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#ecbe13",
         justifyContent: 'center'
 
     },

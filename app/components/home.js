@@ -193,17 +193,17 @@ const homeStyles = StyleSheet.create({
     tabBar: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#87796f",
     },header: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#d9eb52",
         justifyContent: 'center'
 
     },
     headerText:{
         marginTop:16,
-        color:'#ffffff',
+        color:'#000000',
         fontSize:24,
         fontFamily:'avenir'
     },
@@ -247,7 +247,7 @@ const homeStyles = StyleSheet.create({
         width:130,
     },
     activeTab:{
-        backgroundColor:'#333333'
+        backgroundColor:'#8ac7de'
     }
 });
 

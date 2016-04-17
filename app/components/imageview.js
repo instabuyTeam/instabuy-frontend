@@ -79,15 +79,16 @@ render() {
           if(item.imgUrl) {
             u = item.imgUrl;
           }
+            console.log(item);
           if(item.imgUrl.length > 0 && item.imgUrl) {
              return(
-               <View key={key} style={{flexDirection:'row',flex:1}}>
+               <View key={key} style={imgStyles.result}>
                    <Image source={{uri: item.imgUrl[0]}} style={{width:100, height:100}}/>
-                   <View style= {{flexDirection: 'column'}}>
-                       <Text>{item.brand}</Text>
-                       <Text>{item.description}</Text>
-                       <Text>{item.price}</Text>
-                       <Text>Web store</Text>
+                   <View style= {{flexDirection: 'column', flex:1}}>
+                       <Text style={imgStyles.resultText}>Brand: {item.brand}</Text>
+                       <Text style={imgStyles.resultText}>Description: {item.description}</Text>
+                       <Text style={[imgStyles.resultText, {fontWeight:'bold'}]} >Price: {item.normalPrice}</Text>
+                       <Text style={imgStyles.resultText}>Seller: {item.webStore}</Text>
                    </View>
                </View>
              )
@@ -184,6 +185,18 @@ const imgStyles = StyleSheet.create({
     flexDirection: 'column',
 
     },
+    resultText:{
+        margin:2.5,
+        marginLeft:5,
+        marginRight:5,
+    },
+    result: {
+        flexDirection:'row',
+        flex:1, 
+        alignItems:'center',
+        borderBottomColor: '#3d1c00',
+        borderBottomWidth:3
+    },
     footer: {
         flexDirection: 'row',
         padding:5
@@ -213,11 +226,11 @@ const imgStyles = StyleSheet.create({
     tabBar: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#7d1a0c",
     },header: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#a86b4c",
         justifyContent: 'flex-start'
 
     },
