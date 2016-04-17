@@ -22,13 +22,14 @@ class ImageView extends Component {
       products: [],
       seller: true,
       card: ''
-    }
+      loaded:false
+    };
   }
 
   componentDidMount() {
     var _this = this;
     AsyncStorage.getItem("item").then((value) => {
-      _this.setState({item:JSON.parse(value)})
+      _this.setState({item:JSON.parse(value),loaded:true})
     }).then(function() {
       fetch('http://10.24.193.217:1337/' + 'cloudsight/img', {
         method: 'post',
@@ -108,15 +109,16 @@ render() {
           if(item.imgUrl) {
             u = item.imgUrl;
           }
+            console.log(item);
           if(item.imgUrl.length > 0 && item.imgUrl) {
              return(
-               <View key={key} style={{flexDirection:'row',flex:1}}>
+               <View key={key} style={imgStyles.result}>
                    <Image source={{uri: item.imgUrl[0]}} style={{width:100, height:100}}/>
-                   <View style= {{flexDirection: 'column'}}>
-                       <Text>{item.brand}</Text>
-                       <Text>{item.description}</Text>
-                       <Text>{item.price}</Text>
-                       <Text>Web store</Text>
+                   <View style= {{flexDirection: 'column', flex:1}}>
+                       <Text style={imgStyles.resultText}>Brand: {item.brand}</Text>
+                       <Text style={imgStyles.resultText}>Description: {item.description}</Text>
+                       <Text style={[imgStyles.resultText, {fontWeight:'bold'}]} >Price: {item.normalPrice}</Text>
+                       <Text style={imgStyles.resultText}>Seller: {item.webStore}</Text>
                    </View>
                    {buy}
                </View>
@@ -124,13 +126,39 @@ render() {
            }
            })
     }
+    if (!this.state.loaded) {
+      return (
+                <View style={imgStyles.outer}>
 
+          <View style={imgStyles.header}>
+            <TouchableHighlight underlayColor="transparent" onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
+        </View>
+          <View style={{flex:1}}>
+                <Text>Loading...</Text>
+          </View>
+          <View style={imgStyles.tabBar}>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
+                    <View style={imgStyles.tab}>
+                        <Image style={imgStyles.icons} source={require('../images/home_2.png')}/>
+                        <Text style={imgStyles.tabText}>home</Text>
+                    </View>
+          </TouchableHighlight>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
+                    <View style={imgStyles.tab}>
+                        <Image style={imgStyles.icons} source={require('../images/search_2.png')}/>
+                        <Text style={imgStyles.tabText}>Search</Text>
+                    </View>
+                </TouchableHighlight>
+        </View>
+                        </View>
+      );
+    }
 
 
     return(
       <View style={imgStyles.outer}>
         <View style={imgStyles.header}>
-            <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
+            <TouchableHighlight  underlayColor="transparent" onPress={this.props.navigator.pop}><Text style={{marginTop:20,color:'white',fontSize:20}}>Back</Text></TouchableHighlight>
         </View>
         <Text>{this.state.products}</Text>
         <ScrollView>
@@ -138,28 +166,16 @@ render() {
         </ScrollView>
 
         <View style={imgStyles.tabBar}>
-                <TouchableHighlight style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={imgStyles.tabText}>home</Text>
                     </View>
           </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={imgStyles.tabText}>Search</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={this.nothing}>
-                    <View style={imgStyles.tab}>
-                        <Image style={imgStyles.icons} source={require('../images/cart_2.png')}/>
-                        <Text style={imgStyles.tabText}>Cart</Text>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={imgStyles.tabs} onPress={this.nothing}>
-                    <View  style={imgStyles.tab}>
-                        <Image style={imgStyles.icons} source={require('../images/cogwheel_2.png')}/>
-                        <Text style={imgStyles.tabText}>Settings</Text>
                     </View>
                 </TouchableHighlight>
         </View>
@@ -175,6 +191,18 @@ const imgStyles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     flexDirection: 'column',
 
+    },
+    resultText:{
+        margin:2.5,
+        marginLeft:5,
+        marginRight:5,
+    },
+    result: {
+        flexDirection:'row',
+        flex:1,
+        alignItems:'center',
+        borderBottomColor: '#3d1c00',
+        borderBottomWidth:3
     },
     footer: {
         flexDirection: 'row',
@@ -205,11 +233,11 @@ const imgStyles = StyleSheet.create({
     tabBar: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#4f4e57",
     },header: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#666666",
+        backgroundColor: "#8f776a",
         justifyContent: 'flex-start'
 
     },
