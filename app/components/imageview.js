@@ -31,7 +31,7 @@ class ImageView extends Component {
   componentDidMount() {
     var _this = this;
     AsyncStorage.getItem("item").then((value) => {
-      _this.setState({item:JSON.parse(value),loaded:true})
+      _this.setState({item:JSON.parse(value)})
     }).then(function() {
       fetch('http://10.24.193.217:1337/' + 'cloudsight/img', {
         method: 'post',
@@ -43,6 +43,7 @@ class ImageView extends Component {
       .then(res => res.json())
       .then(data => _this.setState({products: data}) )
     }).then(function(){
+        _this.setState({loaded:true})
       ref.child('users').once('value', function(snap){
         //if(snapshot.hasChild(_this.state.item.user.username)) {
             //_this.setState({seller:true, card: snap.val()._this.state.item.user.username.card});
