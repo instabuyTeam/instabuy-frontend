@@ -139,7 +139,7 @@ render() {
     return(
       <View style={imgStyles.outer}>
         <View style={imgStyles.header}>
-            <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
+            <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20,color:'white',fontSize:20}}>Back</Text></TouchableHighlight>
         </View>
 
         <ScrollView>
