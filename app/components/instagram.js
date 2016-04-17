@@ -19,58 +19,10 @@ class Instagram extends Component {
       token: '',
       followers: '',
       followers: [],
-      images: []
+      images: [],
+      sent: false
     }
   }
-
-  /*componentDidMount() {
-    var data = {
-        "client_id": "378839e8b61f4c8ba6489c4cb8466b03",
-        //"client_secret": "deeecab9550a455db7a647985b5deda4",
-        //"grant_type": "authorization_code",
-        "redirect_uri": "https://github.com/instabuyTeam",
-        "response_type": "token"
-
-      };
-
-    var formBody = [];
-    for (var property in data) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(data[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    console.log(formBody);
-    /*fetch(instagramURL,{
-      method: 'post'
-    }).then(function (response) {
-      console.log(response);
-      console.log(response.json());
-          response.json().then(function(data){
-              console.log(data);
-          });
-        });
-
-    fetch(accessTokenURL, {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: JSON.stringify({
-        client_id: '378839e8b61f4c8ba6489c4cb8466b03',
-        redirect_uri: 'https://github.com/instabuyTeam',
-        response_type: 'token'
-      })
-
-    }).then(function (response) {
-      console.log(response);
-      console.log(response.json());
-          response.json().then(function(data){
-              console.log(data);
-          });
-        });
-  }*/
 
   //componentDidMount() {
     //console.log('mount');
@@ -104,33 +56,38 @@ class Instagram extends Component {
 
   setImageList(data) {
     var _this = this;
-    //console.log(data);
-    //console.log(data.data);
     this.setState({followers: data.data});
-    for(var f in data.data) {
-      fetch('https://api.instagram.com/v1/users/' + data.data[f].id +'/media/recent?access_token='+this.state.token)
-        .then(response => response)
-        .then(res => res.json())
-        .then(data => _this.addImages(data))
-        .then(_this.gotoHome());
-    }
+      new Promise(function(res, rej){
+        for(var f in data.data) {
+          console.log(data.data);
+          var arr = data.data;
+          fetch('https://api.instagram.com/v1/users/' + data.data[f].id +'/media/recent?access_token='+_this.state.token)
+            .then(response => response)
+            .then(res => res.json())
+            .then(data => _this.addImages(data))
+            .then(data => {
+              if(f == (arr.length - 1))
+                _this.gotoHome();
+            })
+        }
+        //res();
+      }).then(function(val){
+        _this.gotoHome();
+      });
+
   }
 
   gotoHome() {
-    var _this = this;
-    var str = JSON.stringify(this.state.images);
-    AsyncStorage.setItem('images', str)
-    .then(function(){
-        _this.props.navigator.push({
-          id: 'Home',
-          name: 'Home'
-        });
-    })
-
-  }
-
-  componentWillUnmount() {
-    console.log('new page');
+      var _this = this;
+      var str = JSON.stringify(this.state.images);
+      console.log(this.state.images);
+      AsyncStorage.setItem('images', str)
+      .then(function(){
+          _this.props.navigator.push({
+            id: 'Home',
+            name: 'Home'
+          });
+      })
   }
 
   addImages(data) {
@@ -146,24 +103,35 @@ class Instagram extends Component {
 
   webUpdate(navState) {
     var _this = this;
-    this.setState({url: navState.url});
-    this.setState({token: navState.url.substring(navState.url.indexOf('=')+1, navState.url.length)});
-    AsyncStorage.setItem('access_token', navState.url.substring(navState.url.indexOf('=')+1, navState.url.length));
-    fetch('https://api.instagram.com/v1/users/self/follows?access_token='+this.state.token)
-      .then(response => response)
-      .then(res => res.json())
-      .then(data => _this.setImageList(data))
+    AsyncStorage.getItem('access_token').then((value) => {
+      if(value) {
+        if(!_this.state.sent) { //navState.url.includes('access_token') && navState.url.includes('github') && !_this.state.sent) 
+            this.setState({sent: true})
+            this.setState({url: navState.url});
+            _this.setState({token: value});
+            fetch('https://api.instagram.com/v1/users/self/follows?access_token='+value)
+              .then(response => response)
+              .then(res => res.json())
+              .then(data => _this.setImageList(data))
+        }
 
-    /*AsyncStorage.getItem("access_token", function(token) {
-      fetch('https://api.instagram.com/v1/users/self/follows?access_token='+token).then(function(response){
-        console.log(response);
-        console.log(response.json());
-        console.log(response.json()._65);
-        response.json().then(function(data){
-            console.log(data);
-        });
-      })
-    })*/
+      } else {
+        if(navState.url.includes('access_token') && navState.url.includes('github') && !_this.state.sent) {
+          this.setState({sent: true})
+          this.setState({url: navState.url});
+          console.log(navState.url);
+          console.log(navState.url.substring(navState.url.indexOf('=')+1, navState.url.length));
+          this.setState({token: navState.url.substring(navState.url.indexOf('=')+1, navState.url.length)});
+          AsyncStorage.setItem('access_token', navState.url.substring(navState.url.indexOf('=')+1, navState.url.length));
+          fetch('https://api.instagram.com/v1/users/self/follows?access_token='+_this.state.token)
+            .then(response => response)
+            .then(res => res.json())
+            .then(data => _this.setImageList(data))
+        }
+
+      }
+    })
+
   }
 
   render() {
@@ -183,7 +151,7 @@ class Instagram extends Component {
            onNavigationStateChange = {this.webUpdate.bind(this)}
            style={{
              backgroundColor: 'white',
-             height: 500,
+             height: 300,
            }}
            source={{
              uri: instagramURL,
@@ -192,7 +160,6 @@ class Instagram extends Component {
            }}
            scalesPageToFit={false}
          />
-       <Text>{this.state.url}</Text>
       </View>
     )
   }
