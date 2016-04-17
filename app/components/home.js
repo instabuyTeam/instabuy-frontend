@@ -36,12 +36,11 @@ class Home extends Component {
       
       var renderPost = (mockPost) => {
         return(
-            <View>  
-                <Image source={{uri: mockPost.photoURL}} style={homeStyles.image}> 
+            <View style={homeStyles.post}>  
+                <Image source={{uri: mockPost.photoURL}} style={homeStyles.image}  > 
                     <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
-                        <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
+                        <Image style={homeStyles.buy} source={require('../images/logo_withroundthingwhitestroke.png')}/>
                     </TouchableHighlight>
-
                 </Image>
                 <View style={homeStyles.footer}>
                     <Text style={homeStyles.caption}>{mockPost.caption}</Text>
@@ -63,25 +62,28 @@ class Home extends Component {
         
         <View style={homeStyles.tabBar}>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <Text >1</Text>
-                </TouchableHighlight>
+                    <View style={homeStyles.tab}>
+                        <Image style={homeStyles.icons} source={require('../images/home_white.png')}/>
+                        <Text>Home</Text>
+                    </View>
+          </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <View>
+                    <View style={homeStyles.tab}>
                         <Image style={homeStyles.icons} source={require('../images/search_white.png')}/>
                         <Text>Search</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <Text >3</Text>
-                </TouchableHighlight
-                ><TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <View>
+                    <View style={homeStyles.tab}>
                         <Image style={homeStyles.icons} source={require('../images/cart_white.png')}/>
                         <Text>Cart</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
-                    <Text >5</Text>
+                    <View  style={homeStyles.tab}>
+                        <Image style={homeStyles.icons} source={require('../images/cogwheel_white.png')}/>
+                        <Text>Settings</Text>
+                    </View>
                 </TouchableHighlight>
         </View>
       </View>
@@ -103,16 +105,16 @@ const homeStyles = StyleSheet.create({
         borderWidth:1.5,
         borderTopWidth:0,
         flexDirection: 'row',
-        width: 200,
-        marginBottom: 20
+        marginBottom: 20,
     },
     listV: {
         flex: 1,
-               flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'center'
     },
     list:{
-                alignItems: 'center'
+        flexDirection: 'column',
+        justifyContent: 'center',
 
     },
     caption:{
@@ -120,8 +122,7 @@ const homeStyles = StyleSheet.create({
     },
     
   image: {
-      width:200,
-      height:200,
+      
   },
     tabBar: {
         height: 50,
@@ -135,7 +136,9 @@ const homeStyles = StyleSheet.create({
 
     },
     headerText:{
-        bottom: 0
+        marginTop:10,
+        fontSize:32,
+        fontFamily:'avenir'
     },
     tabs:{
         flex:1,
@@ -151,6 +154,14 @@ const homeStyles = StyleSheet.create({
     buy: {
         width: 50,
         height: 50,
+    },
+    post: {
+        alignItems:'stretch',
+        flex: 1,
+        flexDirection:'column'
+    },
+    tab: {
+        alignItems:'center'
     }
 });
 
