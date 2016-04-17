@@ -39,6 +39,8 @@ class instabuy extends Component {
         return (<Instagram navigator={navigator}/>);
       case 'search':
         return (<Search navigator={navigator}/>);
+      case 'ImageView':
+        return (<ImageView navigator={navigator}/>);
     }
   }
 }

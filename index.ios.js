@@ -15,11 +15,12 @@ import React, {
 import Home from './app/components/home.js';
 import Instagram from './app/components/instagram.js';
 import Search from './app/components/search.js';
+import ImageView from './app/components/imageview.js';
 
 class instabuy extends Component {
   render() {
     return (
-      <Navigator initialRoute={{id: 'Home', name: 'Home'}} renderScene={this.renderScene}
+      <Navigator initialRoute={{id: 'ImageView', name: 'ImageView'}} renderScene={this.renderScene}
         configureScene={(route) => {
           if (route.sceneConfig) {
             return route.sceneConfig;
@@ -38,6 +39,8 @@ class instabuy extends Component {
         return (<Instagram navigator={navigator}/>);
     case 'search':
         return (<Search navigator={navigator}/>);
+    case 'ImageView':
+        return (<ImageView navigator={navigator}/>);
     }
   }
 }

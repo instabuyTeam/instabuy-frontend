@@ -73,7 +73,16 @@ class Home extends Component {
                name: 'search'
              });
     }
-
+    goPhoto(item){
+      var _this = this;
+      AsyncStorage.setItem("item", JSON.stringify(item))
+        .then(function() {
+          _this.props.navigator.push({
+                 id: 'ImageView',
+                 name: 'ImageView'
+               });
+        })
+    }
   render() {
 
    var _this = this;
@@ -93,17 +102,18 @@ class Home extends Component {
              <Text style={homeStyles.caption}>{item.user.username}</Text>
          </View>
          <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
-             <TouchableHighlight style={homeStyles.buy} onPress={_this.goToItem.bind(item)}>
+             <TouchableHighlight style={homeStyles.buy} onPress={e => {_this.goPhoto(item)``}}>
                  <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
              </TouchableHighlight>
 
          </Image>
          <View style={homeStyles.footer}>
-             
+
          </View>
        </View>
      )
    })
+
 
 
     return(
