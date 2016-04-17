@@ -15,7 +15,8 @@ class ImageView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      item: {}
+      item: {},
+      products: []
     }
   }
 
@@ -23,6 +24,11 @@ class ImageView extends Component {
     var _this = this;
     AsyncStorage.getItem("item").then((value) => {
       _this.setState({item:JSON.parse(value)})
+    }).then(function() {
+      fetch('http://10.24.193.217:1337/' + 'cloudsight/testimg/')
+      .then(response => response)
+      .then(res => res.json())
+      .then(data => _this.setState({products: data}) )
     })
   }
 
@@ -47,41 +53,56 @@ render() {
       url = 'https://camo.githubusercontent.com/891e94cd8dda7f40f451bb27067be513c230318a/68747470733a2f2f7261772e6769746875622e636f6d2f766f6f646f6f74696b69676f642f6c6f676f2e6a732f6d61737465722f626f676a732f6a732e706e67'
     }
 
+    var posts;
+    /*if(this.state.item.hasOwnProperty('images')) {
+       posts = this.state.item.map(function(item, key){
+        return(
+          <View style={{flexDirection:'row',flex:1}}>
+              <Image source={{uri: url,width:100,height:100}}/>
+              <View style= {{flexDirection: 'column'}}>
+                  <Text>Brand</Text>
+                  <Text>Description</Text>
+                  <Text>Price</Text>
+                  <Text>Web store</Text>
+              </View>
+          </View>
+        )
+      })
+    }*/
+    var products;
+
+    if(this.state.products.length > 0 && this.state.products[1].imgUrl) {
+        products = this.state.products.map(function(item, key){
+          var u = 'https://avatars3.githubusercontent.com/u/1857166?v=3&s=96';
+          if(item.imgUrl) {
+            u = item.imgUrl;
+          }
+          if(item.imgUrl.length > 0 && item.imgUrl) {
+             return(
+               <View key={key} style={{flexDirection:'row',flex:1}}>
+                   <Image source={{uri: item.imgUrl[0]}} style={{width:100, height:100}}/>
+                   <View style= {{flexDirection: 'column'}}>
+                       <Text>{item.brand}</Text>
+                       <Text>{item.description}</Text>
+                       <Text>{item.price}</Text>
+                       <Text>Web store</Text>
+                   </View>
+               </View>
+             )
+           }
+           })
+    }
+
+
 
     return(
       <View style={imgStyles.outer}>
         <View style={imgStyles.header}>
             <TouchableHighlight onPress={this.props.navigator.pop}><Text style={{marginTop:20}}>Back</Text></TouchableHighlight>
         </View>
-        <ScrollView>
-            <View style={{flexDirection:'row',flex:1}}>
-                <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
-                <View style= {{flexDirection: 'column'}}>
-                    <Text>Brand</Text>
-                    <Text>Description</Text>
-                    <Text>Price</Text>
-                    <Text>Web store</Text>
-                </View>
-            </View>
 
-            <View style={{flexDirection:'row',flex:1}}>
-                <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
-                <View style= {{flexDirection: 'column'}}>
-                    <Text>Brand</Text>
-                    <Text>Description</Text>
-                    <Text>Price</Text>
-                    <Text>Web store</Text>
-                </View>
-            </View>
-            <View style={{flexDirection:'row',flex:1}}>
-                <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
-                <View style= {{flexDirection: 'column'}}>
-                    <Text>Brand</Text>
-                    <Text>Description</Text>
-                    <Text>Price</Text>
-                    <Text>Web store</Text>
-                </View>
-            </View>
+        <ScrollView>
+          {products}
         </ScrollView>
 
         <View style={imgStyles.tabBar}>
