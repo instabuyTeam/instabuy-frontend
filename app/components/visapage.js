@@ -45,8 +45,8 @@ render() {
           <Text>CVC: </Text><TextInput style={searchStyles.searchBox} ref='textInput' placeholder="Tap here to type"  ></TextInput>
           
             
-            <TouchableHighlight underlayColor="transparent"  onPress={this.send}>
-                <Text style={{flex:1}}>Send a gift</Text>
+            <TouchableHighlight underlayColor="transparent" onPress={this.send}>
+                <Text style={{flex:1, margin:50}}>Tip the developers!</Text>
             </TouchableHighlight>
           </View>
                   <View style={imgStyles.tabBar}>
