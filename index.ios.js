@@ -14,11 +14,12 @@ import React, {
 
 import Home from './app/components/home.js';
 import Instagram from './app/components/instagram.js';
+import Search from './app/components/search.js';
 
 class instabuy extends Component {
   render() {
     return (
-      <Navigator initialRoute={{id: 'Home', name: 'Home'}} renderScene={this.renderScene}
+      <Navigator initialRoute={{id: 'search', name: 'search'}} renderScene={this.renderScene}
         configureScene={(route) => {
           if (route.sceneConfig) {
             return route.sceneConfig;
@@ -35,6 +36,8 @@ class instabuy extends Component {
         return (<Home navigator={navigator} />);
       case 'instagram':
         return (<Instagram navigator={navigator}/>);
+    case 'search':
+        return (<Search navigator={navigator}/>);
     }
   }
 }
