@@ -196,6 +196,13 @@ render() {
                         <Text style={imgStyles.tabText}>Search</Text>
                     </View>
                 </TouchableHighlight>
+                        hableHighlight>
+                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
+                    <View style={imgStyles.tab}>
+                        <Image style={imgStyles.icons} source={require('../images/gift_white.png')}/>
+                        <Text style={imgStyles.tabText}>Search</Text>
+                    </View>
+                </TouchableHighlight>
         </View>
       </View>
     )

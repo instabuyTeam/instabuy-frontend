@@ -101,6 +101,13 @@ render() {
                         <Text style={searchStyles.tabText}>Search</Text>
                     </View>
                 </TouchableHighlight>
+                        
+                <TouchableHighlight underlayColor="transparent"  style={searchStyles.tabs} onPress={e => {this.goVisa(e)}}>
+                    <View style={searchStyles.tab}>
+                        <Image style={searchStyles.icons} source={require('../images/gift_white.png')}/>
+                        <Text style={searchStyles.tabText}>Send gift</Text>
+                    </View>
+                </TouchableHighlight>
         </View>
       </View>
     )

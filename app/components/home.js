@@ -147,7 +147,7 @@ class Home extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight underlayColor="transparent"  style={homeStyles.tabs} onPress={e => {this.goVisa(e)}}>
                     <View style={homeStyles.tab}>
-                        <Image style={homeStyles.icons} source={require('../images/search_2.png')}/>
+                        <Image style={homeStyles.icons} source={require('../images/gift_white.png')}/>
                         <Text style={homeStyles.tabText}>Send gift</Text>
                     </View>
                 </TouchableHighlight>
