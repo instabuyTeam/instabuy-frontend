@@ -17,6 +17,19 @@ class Visapage extends Component {
               .then(response => response.json())
               .then(res => res);
     }
+     goSearch(){
+        this.props.navigator.push({
+               id: 'search',
+               name: 'search'
+             });
+    }
+    goHome(){
+        this.props.navigator.push({
+               id: 'Home',
+               name: 'Home'
+             });
+    }
+    
 render() {
   
       return (
@@ -36,20 +49,27 @@ render() {
                 <Text style={{flex:1}}>Send a gift</Text>
             </TouchableHighlight>
           </View>
-          <View style={imgStyles.tabBar}>
-                <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
+                  <View style={imgStyles.tabBar}>
+
+          <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goHome(e)}}>
                     <View style={imgStyles.tab}>
                         <Image style={imgStyles.icons} source={require('../images/home_2.png')}/>
-                        <Text style={imgStyles.tabText}>home</Text>
+                        <Text style={imgStyles.tabText}>Home</Text>
                     </View>
           </TouchableHighlight>
                 <TouchableHighlight underlayColor="transparent"  style={imgStyles.tabs} onPress={e => {this.goSearch(e)}}>
                     <View style={imgStyles.tab}>
-                        <Image style={imgStyles.icons} source={require('../images/gift_white.png')}/>
+                        <Image style={imgStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={imgStyles.tabText}>Search</Text>
                     </View>
                 </TouchableHighlight>
-        </View>
+                <TouchableHighlight underlayColor="transparent"  style={[imgStyles.tabs, imgStyles.activeTab]} onPress={this.nothing}>
+                    <View style={imgStyles.tab}>
+                        <Image style={imgStyles.icons} source={require('../images/gift_white.png')}/>
+                        <Text style={imgStyles.tabText}>Send gift</Text>
+                    </View>
+                </TouchableHighlight>
+                        </View>
      </View>
       );
     
@@ -177,7 +197,7 @@ const imgStyles = StyleSheet.create({
         margin:20
     },
     activeTab:{
-        backgroundColor:'#333333'
+        backgroundColor:'#8ac7de'
     }
 });
     

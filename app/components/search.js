@@ -30,7 +30,12 @@ class Search extends Component {
                name: 'Home'
              });
     }
-    
+    goVisa(){
+        this.props.navigator.push({
+               id: 'visa',
+               name: 'visa'
+             });
+    }
     search() {
           this.refs.textInput.blur();
 
@@ -87,12 +92,12 @@ render() {
                     {posts}
                 </View>
           </ScrollView>
-
         <View style={searchStyles.tabBar}>
-                <TouchableHighlight underlayColor="transparent"  style={searchStyles.tabs} onPress={e => {this.goHome(e)}}>
+
+        <TouchableHighlight underlayColor="transparent"  style={searchStyles.tabs} onPress={e => {this.goHome(e)}}>
                     <View style={searchStyles.tab}>
                         <Image style={searchStyles.icons} source={require('../images/home_2.png')}/>
-                        <Text style={searchStyles.tabText}>home</Text>
+                        <Text style={searchStyles.tabText}>Home</Text>
                     </View>
           </TouchableHighlight>
                 <TouchableHighlight underlayColor="transparent"  style={[searchStyles.tabs, searchStyles.activeTab]} onPress={this.nothing}>
@@ -101,14 +106,13 @@ render() {
                         <Text style={searchStyles.tabText}>Search</Text>
                     </View>
                 </TouchableHighlight>
-                        
                 <TouchableHighlight underlayColor="transparent"  style={searchStyles.tabs} onPress={e => {this.goVisa(e)}}>
                     <View style={searchStyles.tab}>
                         <Image style={searchStyles.icons} source={require('../images/gift_white.png')}/>
                         <Text style={searchStyles.tabText}>Send gift</Text>
                     </View>
                 </TouchableHighlight>
-        </View>
+                        </View>
       </View>
     )
   }
