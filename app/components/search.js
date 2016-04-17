@@ -27,7 +27,7 @@ class Search extends Component {
       var _this = this;
       console.log(this);
       AsyncStorage.getItem('access_token').then((value) => {
-        console.log(_this.state);
+        console.log(value);
         fetch('https://api.instagram.com/v1/tags/' + _this.state.query + '/media/recent?access_token='+value)
         .then(response => response)
         .then(res => res.json())
@@ -43,9 +43,9 @@ render() {
     var _this = this;
     var posts = this.state.posts.map(function(item, key){
       return(
-        <View key={key}>
+        <View key={key} style={searchStyles.listV}>
               <TouchableHighlight onPress={_this.search.bind(_this)}>
-                <Image style={{width:50, height:50}} source={{uri: item.images.standard_resolution.url}}/>
+                <Image style={searchStyles.thumb} source={{uri: item.images.standard_resolution.url}}/>
                 </TouchableHighlight>
           </View>
       )
@@ -54,8 +54,8 @@ render() {
     return(
       <View style={searchStyles.outer}>
         <View style={searchStyles.header}>
-            <TextInput style={{flex:3}} onChangeText={(query) => this.setState({query})} ></TextInput>
-            <TouchableHighlight style= {{flex:1}} onPress={this.search.bind(this)}><Text>fill in</Text></TouchableHighlight>
+            <TextInput style={searchStyles.searchBox}  placeholder="Click here to search" onChangeText={(query) => this.setState({query})} ></TextInput>
+            <TouchableHighlight onPress={this.search.bind(this)}><Image style={searchStyles.searchBtn}  source={require("../images/search_2.png")}/></TouchableHighlight>
         </View>
           <ScrollView scrollEnabled={true} >
               {posts}
@@ -183,6 +183,22 @@ const searchStyles = StyleSheet.create({
         height:100,
         width:100,
         margin:0.5
+    },
+    searchBox: {
+        marginTop:20,
+        flex:1,
+        borderStyle: 'solid',
+        borderWidth:1,
+        borderColor:"#ffffff",
+        backgroundColor:"#dddddd",
+        borderRadius:9,
+        marginBottom:5,
+        marginLeft:5,
+    },
+    searchBtn: {
+        width:20,
+        height:20,
+        margin:20
     }
 });
 
