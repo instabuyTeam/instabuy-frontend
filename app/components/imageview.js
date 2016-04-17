@@ -36,7 +36,7 @@ render() {
         <ScrollView>
             <View style={{flexDirection:'row',flex:1}}>
                 <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
-                <View style= {{flexDirection: 'column'}}>
+                <View style= {{flexDirection: 'column', marginLeft:5}}>
                     <Text>Brand</Text>
                     <Text>Description</Text>
                     <Text>Price</Text>
@@ -45,7 +45,7 @@ render() {
             </View>
             <View style={{flexDirection:'row',flex:1}}>
                 <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
-                <View style= {{flexDirection: 'column'}}>
+                <View style= {{flexDirection: 'column', marginLeft:5}}>
                     <Text>Brand</Text>
                     <Text>Description</Text>
                     <Text>Price</Text>
@@ -54,7 +54,7 @@ render() {
             </View>
             <View style={{flexDirection:'row',flex:1}}>
                 <Image source={{uri: 'https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg',width:100,height:100}}/>
-                <View style= {{flexDirection: 'column'}}>
+                <View style= {{flexDirection: 'column', marginLeft:5}}>
                     <Text>Brand</Text>
                     <Text>Description</Text>
                     <Text>Price</Text>
