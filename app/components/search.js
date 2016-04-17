@@ -147,7 +147,7 @@ const searchStyles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: "#666666",
     },header: {
-        height: 50,
+        height: 70,
         flexDirection: 'row',
         backgroundColor: "#666666",
         justifyContent: 'center'
@@ -213,9 +213,12 @@ const searchStyles = StyleSheet.create({
         marginLeft:5,
     },
     searchBtn: {
-        width:20,
-        height:20,
-        margin:20
+        width:30,
+        height:40,
+        margin:20,
+        marginLeft:5,
+        marginRight:5,
+        resizeMode:'contain'
     },
     activeTab:{
         backgroundColor:'#333333'
