@@ -75,6 +75,7 @@ class Home extends Component {
     }
     goPhoto(item){
       var _this = this;
+      console.log(item);
       AsyncStorage.setItem("item", JSON.stringify(item))
         .then(function() {
           _this.props.navigator.push({
@@ -102,7 +103,7 @@ class Home extends Component {
              <Text style={homeStyles.caption}>{item.user.username}</Text>
          </View>
          <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
-             <TouchableHighlight style={homeStyles.buy} onPress={e => {_this.goPhoto(item)``}}>
+             <TouchableHighlight style={homeStyles.buy} onPress={()=>_this.goPhoto(item)}>
                  <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
              </TouchableHighlight>
 

@@ -11,7 +11,21 @@ import React, {
 } from 'react-native';
 
 class ImageView extends Component {
-    
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      item: {}
+    }
+  }
+
+  componentDidMount() {
+    var _this = this;
+    AsyncStorage.getItem("item").then((value) => {
+      _this.setState({item:JSON.parse(value)})
+    })
+  }
+
     goHome(){
         this.props.navigator.push({
                id: 'Home',
@@ -24,9 +38,15 @@ class ImageView extends Component {
                name: 'search'
              });
     }
-    
+
 render() {
-    
+  var url;
+    if(this.state.item.hasOwnProperty('images')) {
+      url = this.state.item.images.standard_resolution.url;
+    } else {
+      url = 'https://camo.githubusercontent.com/891e94cd8dda7f40f451bb27067be513c230318a/68747470733a2f2f7261772e6769746875622e636f6d2f766f6f646f6f74696b69676f642f6c6f676f2e6a732f6d61737465722f626f676a732f6a732e706e67'
+    }
+
 
     return(
       <View style={imgStyles.outer}>
@@ -38,7 +58,7 @@ render() {
                 <Image source={require('../images/face.jpg')} style={imgStyles.face}/>
                 <Text style={imgStyles.caption}>Mark</Text>
             </View>
-            <Image source={{uri:"https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}} style={imgStyles.image}/>
+            <Image source={{uri:url}} style={imgStyles.image}/>
             <View style={imgStyles.footer}>
                 <Text style={imgStyles.caption}>sdfdsfhjgsdfhjgdfshjg</Text>
             </View>
