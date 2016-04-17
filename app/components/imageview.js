@@ -16,14 +16,16 @@ class ImageView extends Component {
     super(props);
     this.state = {
       item: {},
-      products: []
-    }
+      products: [],
+        loaded:false
+    };
+        
   }
 
   componentDidMount() {
     var _this = this;
     AsyncStorage.getItem("item").then((value) => {
-      _this.setState({item:JSON.parse(value)})
+      _this.setState({item:JSON.parse(value),loaded:true})
     }).then(function() {
       fetch('http://10.24.193.217:1337/' + 'cloudsight/testimg/')
       .then(response => response)
@@ -92,7 +94,11 @@ render() {
            }
            })
     }
-
+    if (!this.state.loaded) {
+      return (
+      <Text>Loading</Text>
+      );
+    }
 
 
     return(
