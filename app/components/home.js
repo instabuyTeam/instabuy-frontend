@@ -83,60 +83,74 @@ class Home extends Component {
             </View>
         );
     };
-    var _this = this;
-    var posts = this.state.posts.map(function(item, key){
-      console.log(item);
-      return(
-        <View key={key} style={homeStyles.list}>
-            <View style={homeStyles.user}>
-                <Image source={{uri: item.user.profile_picture}} style={homeStyles.face}/>
-                <Text style={homeStyles.caption}>{item.user.username}</Text>
-            </View>
-            <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={_this.nothing}>
-                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
-                </TouchableHighlight>
-
-            </Image>
-            <View style={homeStyles.footer}>
-                <Text style={homeStyles.caption}>{item.caption}</Text>
-            </View>
-        </View>
-      )
-    })
+//    var _this = this;
+//    var posts = this.state.posts.map(function(item, key){
+//      console.log(item);
+//      return(
+//        <View key={key} style={homeStyles.list}>
+//            <View style={homeStyles.user}>
+//                <Image source={{uri: item.user.profile_picture}} style={homeStyles.face}/>
+//                <Text style={homeStyles.caption}>{item.user.username}</Text>
+//            </View>
+//            <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
+//                <TouchableHighlight style={homeStyles.buy} onPress={_this.nothing}>
+//                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
+//                </TouchableHighlight>
+//
+//            </Image>
+//            <View style={homeStyles.footer}>
+//                <Text style={homeStyles.caption}>{item.caption}</Text>
+//            </View>
+//        </View>
+//      )
+//    })
 
 
     return(
       <View style={homeStyles.outer}>
         <View style={homeStyles.header}>
-            <Text style={homeStyles.headerText}>Instabuy</Text>
+            <Image style={homeStyles.headerImage} source={require('../images/typemark_cropped.png')}/>
         </View>
           <ScrollView scrollEnabled={true} >
-            {posts}
+            <View  style={homeStyles.list}>
+            <View style={homeStyles.user}>
+                <Image source={require('../images/face.jpg')} style={homeStyles.face}/>
+                <Text style={homeStyles.caption}>Mark</Text>
+            </View>
+            <Image source={{uri:"https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}} style={homeStyles.image}>
+                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
+                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
+                </TouchableHighlight>
+
+            </Image>
+            <View style={homeStyles.footer}>
+                <Text style={homeStyles.caption}>sdfdsfhjgsdfhjgdfshjg</Text>
+            </View>
+        </View>
           </ScrollView>
 
         <View style={homeStyles.tabBar}>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
                     <View style={homeStyles.tab}>
-                        <Image style={homeStyles.icons} source={require('../images/home_white.png')}/>
+                        <Image style={homeStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={homeStyles.tabText}>Home</Text>
                     </View>
           </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
                     <View style={homeStyles.tab}>
-                        <Image style={homeStyles.icons} source={require('../images/search_white.png')}/>
+                        <Image style={homeStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={homeStyles.tabText}>Search</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
                     <View style={homeStyles.tab}>
-                        <Image style={homeStyles.icons} source={require('../images/cart_white.png')}/>
+                        <Image style={homeStyles.icons} source={require('../images/cart_2.png')}/>
                         <Text style={homeStyles.tabText}>Cart</Text>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
                     <View  style={homeStyles.tab}>
-                        <Image style={homeStyles.icons} source={require('../images/cogwheel_white.png')}/>
+                        <Image style={homeStyles.icons} source={require('../images/cogwheel_2.png')}/>
                         <Text style={homeStyles.tabText}>Settings</Text>
                     </View>
                 </TouchableHighlight>
@@ -200,7 +214,6 @@ const homeStyles = StyleSheet.create({
         flex:1,
         alignItems: 'center',
         borderRightWidth:0.5,
-        borderLeftWidth:0.5,
         borderColor: '#ffffff'
     },
     icons: {
@@ -228,6 +241,11 @@ const homeStyles = StyleSheet.create({
         height:40,
         width:40,
         borderRadius:20
+    },
+    headerImage: {
+        marginTop:18  ,
+        height:30,
+        width:130,
     }
 });
 
