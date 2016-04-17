@@ -7,7 +7,8 @@ import React, {
   Text,
       TouchableHighlight,
   AsyncStorage,
-      ScrollView
+      ScrollView,
+      WebView
 } from 'react-native';
 
 var Firebase = require('firebase');
@@ -65,10 +66,12 @@ class ImageView extends Component {
     }
 
     buy(asin) {
-      fetch('http://10.24.193.217:1337/' + 'cloudsight/cart/'+asin)
-      .then(response => response)
-      .then(res => this.setState({link: res}))
-      //.then(data => this.setState({link: data}) );
+      fetch('http://10.24.193.217:1337/' + 'cloudsight/cart/'+asin,{
+        method: 'post'
+      })
+      .then((response) => response.text())
+      //.then(res => res)
+      .then((data) => this.setState({link: data}) );
     }
 
 render() {
@@ -103,20 +106,18 @@ render() {
       })
     }*/
     var web;
-    if(this.state.link.length > 0) {
-      web =  <WebView
-         onNavigationStateChange = {this.webUpdate.bind(this)}
+    if(this.state.link) {
+      web =  <View><WebView
          style={{
            backgroundColor: 'white',
-           height: 300,
+           height: 500,
          }}
          source={{
            uri: this.state.link,
-           method: 'POST'
-
+           method: 'post'
          }}
          scalesPageToFit={false}
-       />
+       /></View>
    }
     var products;
     var _this =this;
