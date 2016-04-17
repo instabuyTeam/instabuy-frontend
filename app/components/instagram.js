@@ -101,7 +101,7 @@ class Instagram extends Component {
     var _this = this;
     AsyncStorage.getItem('access_token').then((value) => {
       if(value) {
-        if(!_this.state.sent) { //navState.url.includes('access_token') && navState.url.includes('github') && !_this.state.sent)
+        if(navState.url.includes('access_token') && navState.url.includes('github') && !_this.state.sent) { //navState.url.includes('access_token') && navState.url.includes('github') && !_this.state.sent)
             this.setState({sent: true})
             this.setState({url: navState.url});
             _this.setState({token: value});

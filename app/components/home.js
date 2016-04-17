@@ -67,6 +67,12 @@ class Home extends Component {
         console.log(item);
         console.log('run');
     }
+    goSearch(){
+        this.props.navigator.push({
+               id: 'search',
+               name: 'search'
+             });
+    }
 
   render() {
 
@@ -110,13 +116,13 @@ class Home extends Component {
           </ScrollView>
 
         <View style={homeStyles.tabBar}>
-                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
+                <TouchableHighlight style={[homeStyles.tabs, homeStyles.activeTab]} onPress={this.nothing}>
                     <View style={homeStyles.tab}>
                         <Image style={homeStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={homeStyles.tabText}>Home</Text>
                     </View>
           </TouchableHighlight>
-                <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
+                <TouchableHighlight style={homeStyles.tabs} onPress={e => {this.goSearch(e)}}>
                     <View style={homeStyles.tab}>
                         <Image style={homeStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={homeStyles.tabText}>Search</Text>
@@ -154,8 +160,8 @@ const homeStyles = StyleSheet.create({
     },
     user: {
         flexDirection: 'row',
-                alignItems:'center'
-
+        alignItems:'center',
+        margin:5
     },
     listV: {
         flex: 1,
@@ -203,6 +209,7 @@ const homeStyles = StyleSheet.create({
     buy: {
         width: 50,
         height: 50,
+        alignSelf:'flex-end'
     },
     post: {
         alignItems:'stretch',
@@ -226,6 +233,9 @@ const homeStyles = StyleSheet.create({
         marginTop:18  ,
         height:30,
         width:130,
+    },
+    activeTab:{
+        backgroundColor:'#333333'
     }
 });
 
