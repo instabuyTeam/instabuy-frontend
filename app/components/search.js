@@ -22,7 +22,14 @@ class Search extends Component {
     openImage(){
         console.log("Open image");
     }
-
+    
+    goHome(){
+        this.props.navigator.push({
+               id: 'Home',
+               name: 'Home'
+             });
+    }
+    
     search() {
       var _this = this;
       console.log(this);
@@ -62,13 +69,13 @@ render() {
           </ScrollView>
 
         <View style={searchStyles.tabBar}>
-                <TouchableHighlight style={searchStyles.tabs} onPress={this.nothing}>
+                <TouchableHighlight style={searchStyles.tabs} onPress={e => {this.goHome(e)}}>
                     <View style={searchStyles.tab}>
                         <Image style={searchStyles.icons} source={require('../images/home_2.png')}/>
                         <Text style={searchStyles.tabText}>home</Text>
                     </View>
           </TouchableHighlight>
-                <TouchableHighlight style={searchStyles.tabs} onPress={this.nothing}>
+                <TouchableHighlight style={[searchStyles.tabs, searchStyles.activeTab]} onPress={this.nothing}>
                     <View style={searchStyles.tab}>
                         <Image style={searchStyles.icons} source={require('../images/search_2.png')}/>
                         <Text style={searchStyles.tabText}>Search</Text>
@@ -199,6 +206,9 @@ const searchStyles = StyleSheet.create({
         width:20,
         height:20,
         margin:20
+    },
+    activeTab:{
+        backgroundColor:'#333333'
     }
 });
 
