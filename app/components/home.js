@@ -5,13 +5,15 @@ import React, {
   View,
       StyleSheet,
   Text,
-      TouchableHighlight
+      TouchableHighlight,
+  AsyncStorage,
+      ScrollView
 } from 'react-native';
 var mockPosts = [
     {caption: "This is my picture. Isdfhbdfas jhjf hdsfjh ajd hdsfajh. sdfa hgfdsjhdfs jhsdjhdf jhadsfjh.", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, },{caption: "This is my picture", photoURL: "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg", numLikes: 14, }];
 
 class Home extends Component {
-    
+
  constructor(props) {
     super(props);
     this.state = {
@@ -19,48 +21,99 @@ class Home extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: false,
+      posts: []
     };
   }
     componentDidMount(){
+      var _this = this;
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(mockPosts),
+          dataSource: this.state.dataSource.cloneWithRows(this.state.posts),
           loaded: true,
+
         });
+        console.log('mount');
+        /*AsyncStorage.getItem('images', function(images) {
+          var arr= [];
+          console.log(images);
+          var post = JSON.parse(images)
+          for(var i in post) {
+            arr.push(post[i]);
+          }
+          _this.setState({posts: arr});
+        })*/
+        this.setImages();
     }
-    
+
+    setImages() {
+      var _this = this;
+      AsyncStorage.getItem('images').then((value) => {
+        console.log(value);
+        console.log(JSON.parse(value));
+        this.setState({posts: JSON.parse(value)});
+      })
+
+      /*function(images) {
+        var arr = [];
+        console.log(images);
+        var post = JSON.parse(images)
+        for(var i in post) {
+          arr.push(post[i]);
+        }
+        _this.setState({posts: arr});
+      })*/
+    }
+
     nothing(){
         console.log("nothing");
     }
 
   render() {
-      
       var renderPost = (mockPost) => {
         return(
-            <View>  
-                <Image source={{uri: mockPost.photoURL}} style={homeStyles.image}> 
+            <View>
+                <Image source={{uri: mockPost.images.standard_resolution.url}} style={homeStyles.image}>
                     <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
                         <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
                     </TouchableHighlight>
 
                 </Image>
                 <View style={homeStyles.footer}>
-                    <Text style={homeStyles.caption}>{mockPost.caption}</Text>
-                    <Text>{mockPost.numLikes}</Text>
+                    <Text style={homeStyles.caption}>mockPost.caption</Text>
+                    <Text>mockPost.numLikes</Text>
                 </View>
             </View>
         );
     };
-      
+    var posts = this.state.posts.map(function(item, key){
+      console.log(item);
+      return(
+        <View key={key}>
+            <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
+                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
+                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
+                </TouchableHighlight>
+
+            </Image>
+            <View style={homeStyles.footer}>
+                <Text style={homeStyles.caption}>{item.caption}</Text>
+                <Text>{item.likes.count}</Text>
+            </View>
+        </View>
+      )
+    })
+
+
     return(
       <View style={homeStyles.outer}>
         <View style={homeStyles.header}>
             <Text style={homeStyles.headerText}>Instabuy</Text>
         </View>
         <View style={homeStyles.listV}>
-        <ListView contentContainerStyle={homeStyles.list} dataSource={this.state.dataSource} renderRow={renderPost}>
-        </ListView>
+          <ScrollView>
+            {posts}
+          </ScrollView>
         </View>
-        
+
         <View style={homeStyles.tabBar}>
                 <TouchableHighlight style={homeStyles.tabs} onPress={this.nothing}>
                     <Text >1</Text>
@@ -93,7 +146,7 @@ const homeStyles = StyleSheet.create({
     outer: {
       flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#F5FCFF', 
+    backgroundColor: '#F5FCFF',
     flexDirection: 'column',
 
     },
@@ -118,10 +171,10 @@ const homeStyles = StyleSheet.create({
     caption:{
          flex:1
     },
-    
+
   image: {
       width:200,
-      height:200,
+      height:200
   },
     tabBar: {
         height: 50,
@@ -142,7 +195,7 @@ const homeStyles = StyleSheet.create({
         alignItems: 'center',
         borderRightWidth:0.5,
         borderLeftWidth:0.5,
-        
+
     },
     icons: {
         width: 30,
