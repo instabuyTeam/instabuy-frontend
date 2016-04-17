@@ -10,6 +10,9 @@ import React, {
       ScrollView
 } from 'react-native';
 
+var Firebase = require('firebase');
+var ref = new Firebase('https://instabuysell.firebaseio.com/');
+
 class ImageView extends Component {
 
   constructor(props) {
@@ -17,9 +20,11 @@ class ImageView extends Component {
     this.state = {
       item: {},
       products: [],
-        loaded:false
+      seller: true,
+      card: '',
+      loaded:false,
+      link:''
     };
-        
   }
 
   componentDidMount() {
@@ -27,11 +32,23 @@ class ImageView extends Component {
     AsyncStorage.getItem("item").then((value) => {
       _this.setState({item:JSON.parse(value),loaded:true})
     }).then(function() {
-      fetch('http://10.24.193.217:1337/' + 'cloudsight/testimg/')
+      fetch('http://10.24.193.217:1337/' + 'cloudsight/img', {
+        method: 'post',
+        body: JSON.stringify({
+          img_url: _this.state.item.images.standard_resolution.url
+        })
+      })
       .then(response => response)
       .then(res => res.json())
       .then(data => _this.setState({products: data}) )
+    }).then(function(){
+      ref.child('users').once('value', function(snap){
+        //if(snapshot.hasChild(_this.state.item.user.username)) {
+            //_this.setState({seller:true, card: snap.val()._this.state.item.user.username.card});
+        //}
+      })
     })
+
   }
 
     goHome(){
@@ -47,12 +64,26 @@ class ImageView extends Component {
              });
     }
 
+    buy(asin) {
+      fetch('http://10.24.193.217:1337/' + 'cloudsight/cart/'+asin)
+      .then(response => response)
+      .then(res => this.setState({link: res}))
+      //.then(data => this.setState({link: data}) );
+    }
+
 render() {
   var url;
     if(this.state.item.hasOwnProperty('images')) {
       url = this.state.item.images.standard_resolution.url;
     } else {
       url = 'https://camo.githubusercontent.com/891e94cd8dda7f40f451bb27067be513c230318a/68747470733a2f2f7261772e6769746875622e636f6d2f766f6f646f6f74696b69676f642f6c6f676f2e6a732f6d61737465722f626f676a732f6a732e706e67'
+    }
+
+    var buy;
+    if(this.state.seller) {
+      buy = <View>
+        <TouchableHighlight onPress={this.buy}><Text style={{fontSize:15}}>Buy</Text></TouchableHighlight>
+      </View>
     }
 
     var posts;
@@ -71,8 +102,24 @@ render() {
         )
       })
     }*/
-    var products;
+    var web;
+    if(this.state.link.length > 0) {
+      web =  <WebView
+         onNavigationStateChange = {this.webUpdate.bind(this)}
+         style={{
+           backgroundColor: 'white',
+           height: 300,
+         }}
+         source={{
+           uri: this.state.link,
+           method: 'POST'
 
+         }}
+         scalesPageToFit={false}
+       />
+   }
+    var products;
+    var _this =this;
     if(this.state.products.length > 0 && this.state.products[1].imgUrl) {
         products = this.state.products.map(function(item, key){
           var u = 'https://avatars3.githubusercontent.com/u/1857166?v=3&s=96';
@@ -89,6 +136,7 @@ render() {
                        <Text style={imgStyles.resultText}>Description: {item.description}</Text>
                        <Text style={[imgStyles.resultText, {fontWeight:'bold'}]} >Price: {item.normalPrice}</Text>
                        <Text style={imgStyles.resultText}>Seller: {item.webStore}</Text>
+                       <TouchableHighlight onPress={() => _this.buy(item.asin)}><Text style={{fontSize:15}}>Buy</Text></TouchableHighlight>
                    </View>
                </View>
              )
@@ -132,6 +180,7 @@ render() {
 
         <ScrollView>
           {products}
+          {web}
         </ScrollView>
 
         <View style={imgStyles.tabBar}>
@@ -168,7 +217,7 @@ const imgStyles = StyleSheet.create({
     },
     result: {
         flexDirection:'row',
-        flex:1, 
+        flex:1,
         alignItems:'center',
         borderBottomColor: '#3d1c00',
         borderBottomWidth:3
