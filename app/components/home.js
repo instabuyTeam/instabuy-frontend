@@ -193,11 +193,11 @@ const homeStyles = StyleSheet.create({
     tabBar: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#87796f",
+        backgroundColor: "#4f4e57",
     },header: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#d9eb52",
+        backgroundColor: "#8f776a",
         justifyContent: 'center'
 
     },

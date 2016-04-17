@@ -52,13 +52,24 @@ class Search extends Component {
     setPosts(data) {
       this.setState({posts:data.data});
     }
+    goPhoto(item){
+      var _this = this;
+      console.log(item);
+      AsyncStorage.setItem("item", JSON.stringify(item))
+        .then(function() {
+          _this.props.navigator.push({
+                 id: 'ImageView',
+                 name: 'ImageView'
+               });
+        })
+    }
     
 render() {
     var _this = this;
     var posts = this.state.posts.map(function(item, key){
       return(
         <View key={key}>
-            <TouchableHighlight style={{flex:1}} onPress={this.nothing}>
+            <TouchableHighlight style={{flex:1}} onPress={()=>_this.goPhoto(item)}>
                 <Image style={searchStyles.thumb} source={{uri: item.images.standard_resolution.url}}/>
             </TouchableHighlight>
         </View>
@@ -145,11 +156,11 @@ const searchStyles = StyleSheet.create({
     tabBar: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#7d1a0c",
+        backgroundColor: "#4f4e57",
     },header: {
         height: 70,
         flexDirection: 'row',
-        backgroundColor: "#ecbe13",
+        backgroundColor: "#8f776a",
         justifyContent: 'center'
 
     },
@@ -221,7 +232,7 @@ const searchStyles = StyleSheet.create({
         resizeMode:'contain'
     },
     activeTab:{
-        backgroundColor:'#333333'
+        backgroundColor:'#8ac7de'
     }
 });
 

@@ -226,11 +226,11 @@ const imgStyles = StyleSheet.create({
     tabBar: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#7d1a0c",
+        backgroundColor: "#4f4e57",
     },header: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: "#a86b4c",
+        backgroundColor: "#8f776a",
         justifyContent: 'flex-start'
 
     },
