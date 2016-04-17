@@ -32,6 +32,8 @@ class Search extends Component {
     }
     
     search() {
+          this.refs.textInput.blur();
+
       var _this = this;
       console.log(this);
       AsyncStorage.getItem('access_token').then((value) => {
@@ -42,11 +44,15 @@ class Search extends Component {
         .then(data => _this.setPosts(data))
       })
     }
+    
+    hideKeyboard(){
+        this.refs.textInput.blur();
+    }
 
     setPosts(data) {
       this.setState({posts:data.data});
     }
-
+    
 render() {
     var _this = this;
     var posts = this.state.posts.map(function(item, key){
@@ -58,17 +64,14 @@ render() {
         </View>
       )
     })
-var dismissKeyboard = require('dismissKeyboard');
 
     return(
-      <View style={searchStyles.outer}>
+      <View  style={searchStyles.outer}>
         <View style={searchStyles.header}>
-        <TouchableWithoutFeedback onPress={()=> dismissKeyboard()}>
-            <TextInput style={searchStyles.searchBox}  placeholder="Click here to search" onChangeText={(query) => this.setState({query})} ></TextInput>
-        </TouchableWithoutFeedback>
+            <TextInput style={searchStyles.searchBox} ref='textInput' placeholder="Click here to search" onChangeText={(query) => this.setState({query})} onSubmitEditing={this.search.bind(this)} ></TextInput>
             <TouchableHighlight onPress={this.search.bind(this)}><Image style={searchStyles.searchBtn}  source={require("../images/search_2.png")}/></TouchableHighlight>
         </View>
-          <ScrollView scrollEnabled={true} >
+          <ScrollView  scrollEnabled={true} onScroll={this.hideKeyboard.bind(this)}>
                 <View style={searchStyles.listV}>
                     {posts}
                 </View>
