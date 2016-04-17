@@ -72,7 +72,12 @@ class Home extends Component {
                name: 'search'
              });
     }
-
+    goPhoto(){
+        this.props.navigator.push({
+               id: 'ImageView',
+               name: 'ImageView'
+             });
+    }
   render() {
       var renderPost = (mockPost) => {
         return(
@@ -99,7 +104,7 @@ class Home extends Component {
 //                <Text style={homeStyles.caption}>{item.user.username}</Text>
 //            </View>
 //            <Image source={{uri: item.images.standard_resolution.url}} style={homeStyles.image}>
-//                <TouchableHighlight style={homeStyles.buy} onPress={_this.nothing}>
+//                <TouchableHighlight style={homeStyles.buy} onPress={_this.goPhot}>
 //                    <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
 //                </TouchableHighlight>
 //
@@ -124,7 +129,7 @@ class Home extends Component {
                 <Text style={homeStyles.caption}>Mark</Text>
             </View>
             <Image source={{uri:"https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg"}} style={homeStyles.image}>
-                <TouchableHighlight style={homeStyles.buy} onPress={this.nothing}>
+                <TouchableHighlight style={homeStyles.buy} onPress={e=>{this.goPhoto(e)}}>
                     <Image style={homeStyles.buy} source={require('../images/logo_withroundthing.png')}/>
                 </TouchableHighlight>
 
