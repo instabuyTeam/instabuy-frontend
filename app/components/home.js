@@ -238,7 +238,8 @@ const homeStyles = StyleSheet.create({
     face:{
         height:40,
         width:40,
-        borderRadius:20
+        borderRadius:20,
+        marginRight: 5
     },
     headerImage: {
         marginTop:18  ,
